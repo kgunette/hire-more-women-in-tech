@@ -41,8 +41,8 @@
             color: white;
             padding: 40px 20px;
             text-align: center;
-            margin-top: 0px
             margin-bottom: 0px;
+            position: relative;
         }
         
         h1 {
@@ -110,6 +110,83 @@
         
         .nav a:hover {
             color: #3498db;
+        }
+        
+        .hamburger {
+            display: none;
+            background-color: #2c3e50;
+            border: 2px solid #34495e;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px 10px;
+            position: fixed;
+            top: 15px;
+            right: 10px;
+            z-index: 1001;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav ul.mobile-hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                position: static;
+                padding: 0;
+                background-color: transparent;
+            }
+
+            .hamburger {
+                display: block;
+                text-align: center;
+            }
+
+            .nav ul {
+                display: none;
+                flex-direction: column;
+                width: 280px;
+                background-color: #34495e;
+                position: fixed;
+                top: 60px;
+                right: 15px;
+                z-index: 1000;
+                padding: 20px;
+                margin: 0;
+                box-sizing: border-box;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            }
+
+            .nav ul.show {
+                display: flex;
+            }
+
+            .nav ul.show::before {
+                content: "×";
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                font-size: 24px;
+                color: white;
+                cursor: pointer;
+            }
+
+            .nav ul li {
+                margin: 8px 0;
+                text-align: left;
+                padding-left: 0;
+                list-style: none;
+            }
+
+            .nav ul li a {
+                font-size: 16px;
+                padding: 8px 0;
+                display: block;
+                border-bottom: 1px solid #2c3e50;
+            }
         }
         
         .section {
@@ -211,12 +288,16 @@
 </head>
 <body>
     <header>
-        <h1>Hire More Women In Tech</h1><span class="subtitle">(and people with diverse experiences and identities)</span>
-        <br><br><p class="lead">Building diverse teams creates better products and stronger companies</p>
+        <h1>Hire More Women In Tech</h1>
+        <span class="subtitle">(and people with diverse experiences and identities)</span>
+        <br><br>
+        <p class="lead">Building diverse teams creates better products and stronger companies</p>
+        
+        <button class="hamburger" onclick="toggleMenu()">☰</button>
     </header>
-    
+
     <nav class="nav">
-        <ul>
+        <ul id="navMenu">
             <li><a href="#problem">The Problem</a></li>
             <li><a href="#dei-backlash">DEI Backlash</a></li>
             <li><a href="#job-posts">Job Posts</a></li>
@@ -818,8 +899,28 @@
             <p><strong>Thanks for the press!</strong> As spotlighted on <a href="http://www.pri.org/stories/2016-02-08/why-arent-there-more-minorities-working-tech" target="_blank">NPR</a>, <a href="http://www.boston.com/jobs/news/2015/03/09/research-points-ideas-welcome-women-the-tech-industry/TMJXHDpA8v0yRjPPjdJh3H/pictures.html#slide-1" target="_blank">boston.com</a>, <a href="http://technical.ly/brooklyn/2015/03/17/hire-more-women-tech-karen-schoellkopf/" target="_blank">Technical.ly</a>, and <a href="https://open.bufferapp.com/job-descriptions-diversity/" target="_blank">Buffer app's public commitment to better hiring practices</a>, as well as <a href="https://recompilermag.com/2017/05/05/diverse-perspectives-retrospectives-and-contact-your-representatives/" target="_blank">Recompiler Mag</a>. Shout out to the many companies that have reached out to let me know that this site has been helpful in evolving their recruiting processes.</p>
         </footer>
     </div>
+    <script>
+    function toggleMenu() {
+        const navMenu = document.getElementById('navMenu');
+        navMenu.classList.toggle('show');
+    }
+
+    // Close menu when clicking on menu items
+    document.addEventListener('click', function(e) {
+        const navMenu = document.getElementById('navMenu');
+        if (e.target.closest('.nav ul.show') && e.target.tagName === 'A') {
+            navMenu.classList.remove('show');
+        }
+        // Close when clicking the X (::before pseudo-element area)
+        if (e.target.closest('.nav ul.show') && !e.target.closest('li')) {
+            navMenu.classList.remove('show');
+        }
+    });
+    </script>
 </body>
 </html>
+
+
 
 
 
