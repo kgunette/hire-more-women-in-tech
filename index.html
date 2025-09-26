@@ -15,6 +15,40 @@
     <meta property="og:image" content="https://HireMoreWomenInTech.github.io/image.jpg">
     <meta property="og:url" content="https://www.hiremorewomenintech.com/">
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DQM9R4PCHN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DQM9R4PCHN');
+    </script>
+    
+    <script>
+    // Track navigation clicks
+    document.addEventListener('DOMContentLoaded', function() {
+      // Track navigation menu clicks
+      document.querySelectorAll('.nav a').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          gtag('event', 'click', {
+            'event_category': 'Navigation',
+            'event_label': e.target.textContent.trim()
+          });
+        });
+      });
+
+      // Track external link clicks
+      document.querySelectorAll('a[target="_blank"]').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          gtag('event', 'click', {
+            'event_category': 'External Link',
+            'event_label': e.target.href
+          });
+        });
+      });
+    });
+    </script>
+    
     <title>Hire More Women (and people with diverse experiences and identities) In Tech</title>
     <style>
         * {
@@ -292,7 +326,7 @@
         <span class="subtitle">(and people with diverse experiences and identities)</span>
         <br><br>
         <p class="lead">Building diverse teams creates better products and stronger companies</p>
-        
+
         <button class="hamburger" onclick="toggleMenu()">☰</button>
     </header>
 
@@ -919,6 +953,8 @@
     </script>
 </body>
 </html>
+
+
 
 
 
