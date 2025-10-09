@@ -71,18 +71,49 @@
         }
         
         header {
-            background-color: #2c3e50;
+            background: linear-gradient(135deg, #2c3e50 0%, #2c5f7f 50%, #1abc9c 100%);
             color: white;
             padding: 40px 20px;
             text-align: center;
             margin-bottom: 0px;
             position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent 0px, transparent 10px, rgba(255,255,255,.02) 10px, rgba(255,255,255,.02) 11px),
+                repeating-linear-gradient(90deg, transparent 0px, transparent 10px, rgba(255,255,255,.02) 10px, rgba(255,255,255,.02) 11px);
+            background-size: 100% 50px, 50px 100%;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-radial-gradient(circle at 20% 80%, transparent 0, transparent 50px, rgba(255,255,255,.015) 50px, rgba(255,255,255,.015) 100px);
+            opacity: 0.6;
+            pointer-events: none;
         }
         
         h1 {
             font-size: 3em;
             margin-bottom: 20px;
             font-weight: 700;
+            position: relative;
+            z-index: 1;
         }
         
         h2 {
@@ -104,6 +135,8 @@
             color: white;
             margin-bottom: 30px;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         .subtitle {
@@ -112,6 +145,8 @@
             font-weight: 400 !important;
             margin: 0 0 20px 0;
             display: inline;
+            position: relative;
+            z-index: 1;
         }
         
         .nav {
@@ -953,10 +988,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
